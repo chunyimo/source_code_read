@@ -1,0 +1,11 @@
+{
+  "name": "source_code_read",
+  "version": "1.0.0",
+  "description": "源码阅读笔记和注解",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mochunyi",
+  "license": "ISC"
+}
