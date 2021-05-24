@@ -12190,7 +12190,7 @@
       queue.shared.pending = null;
       // The pending queue is circular. Disconnect the pointer between first
       // and last so that it's non-circular.
-
+      // Note: pending指向的时最后一个pending的state
       var lastPendingUpdate = pendingQueue;
       var firstPendingUpdate = lastPendingUpdate.next;
       lastPendingUpdate.next = null; // Append pending updates to base queue
@@ -12211,7 +12211,9 @@
       // 和workInProgress fiber，diff产生出的变化会标记在workInProgress fiber上。
       // current fiber的alternate是workInProgress fiber，workInProgress fiber的alternate是current fiber
       var current = workInProgress.alternate;
-
+      // ! update queue 双缓存，防止低优先级被高优先级中断而丢失
+      // ! 本次被跳过的低优先级Update及之后的Update会称为下次的baseUpdae，存储在current Fiber
+      // ! 下次进入时，直接从current fiber 拷贝出新的queue
       if (current !== null) {
         // This is always non-null on a ClassComponent or HostRoot
         var currentQueue = current.updateQueue;
@@ -12260,7 +12262,7 @@
             callback: update.callback,
             next: null
           };
-
+          // ! 该update 要被跳过了赶紧备份一下state，之后重启时需要需要这个state作为baseState.
           if (newLastBaseUpdate === null) {
             newFirstBaseUpdate = newLastBaseUpdate = clone;
             newBaseState = newState;
@@ -12334,7 +12336,7 @@
           }
         }
       } while (true);
-
+      // 在没有被跳过的情况下
       if (newLastBaseUpdate === null) {
         newBaseState = newState;
       }
@@ -12361,6 +12363,7 @@
 
       markSkippedUpdateLanes(newLanes);
       workInProgress.lanes = newLanes;
+      // 获取的新state 放到fiber节点上，注意这个memoizedState只有在没有被跳过的情况下才和updateQueue.baseState一致。
       workInProgress.memoizedState = newState;
     }
 
@@ -12510,6 +12513,7 @@
   var classComponentUpdater = {
     isMounted: isMounted,
     enqueueSetState: function (inst, payload, callback) {
+      // 通过组件实例获取对应fiber
       var fiber = get(inst);
       var eventTime = requestEventTime();
       var lane = requestUpdateLane(fiber);
@@ -12546,11 +12550,15 @@
       enqueueUpdate(fiber, update);
       scheduleUpdateOnFiber(fiber, lane, eventTime);
     },
+    // forceUpdate与update相比没有payload，并设置了一个tag
     enqueueForceUpdate: function (inst, callback) {
       var fiber = get(inst);
       var eventTime = requestEventTime();
       var lane = requestUpdateLane(fiber);
       var update = createUpdate(eventTime, lane);
+      // 赋值tag 为ForceUpdate
+      // checkHasForceUpdateAfterProcessing 内用到
+      // 参见 updateClassInstance 内部
       update.tag = ForceUpdate;
 
       if (callback !== undefined && callback !== null) {
@@ -14886,16 +14894,19 @@
   }
 
   // These are set right before calling the component.
-  var renderLanes = NoLanes; // The work-in-progress fiber. I've named it differently to distinguish it from
-  // the work-in-progress hook.
+  var renderLanes = NoLanes; 
 
-  var currentlyRenderingFiber$1 = null; // Hooks are stored as a linked list on the fiber's memoizedState field. The
+  // The work-in-progress fiber. I've named it differently to distinguish it from
+  // the work-in-progress hook.
+  var currentlyRenderingFiber$1 = null; 
+
+  // Hooks are stored as a linked list on the fiber's memoizedState field. The
   // current hook list is the list that belongs to the current fiber. The
   // work-in-progress hook list is a new list that will be added to the
   // work-in-progress fiber.
-
   var currentHook = null;
-  var workInProgressHook = null; // Whether an update was scheduled at any point during the render phase. This
+  var workInProgressHook = null; 
+  // Whether an update was scheduled at any point during the render phase. This
   // does not get reset if we do another render pass; only when we're completely
   // finished evaluating this component. This is an optimization so we know
   // whether we need to clear render phase updates after a throw.
@@ -15034,6 +15045,7 @@
     currentlyRenderingFiber$1 = workInProgress;
 
     {
+      // _debugHookTypes 用于记录hook调用的顺序，防止hook在条件语句中调用
       hookTypesDev = current !== null ? current._debugHookTypes : null;
       hookTypesUpdateIndexDev = -1; // Used for hot reloading:
 
@@ -15042,21 +15054,24 @@
 
     workInProgress.memoizedState = null;
     workInProgress.updateQueue = null;
-    workInProgress.lanes = NoLanes; // The following should have already been reset
+    workInProgress.lanes = NoLanes; 
+    // The following should have already been reset
     // currentHook = null;
     // workInProgressHook = null;
     // didScheduleRenderPhaseUpdate = false;
     // TODO Warn if no hooks are used at all during mount, then some are used during update.
     // Currently we will identify the update render as a mount because memoizedState === null.
-    // This is tricky because it's valid for certain types of components (e.g. React.lazy)
+    // This is tricky(棘手的) because it's valid for certain types of components (e.g. React.lazy)
     // Using memoizedState to differentiate between mount/update only works if at least one stateful hook is used.
     // Non-stateful hooks (e.g. context) don't get added to memoizedState,
     // so memoizedState would be null during updates and mounts.
-
-    {
+    
+    // ! 给全局的ReactCurrentDispatcher$1.current 赋值, 在useState和useReducer等hook中需要用到
+    { //使用update 模式的 dispatcher
       if (current !== null && current.memoizedState !== null) {
         ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
       } else if (hookTypesDev !== null) {
+        // 用于确保hook的顺序不会发生改变
         // This dispatcher handles an edge case where a component is updating,
         // but no stateful hooks have been used.
         // We want to match the production code behavior (which will use HooksDispatcherOnMount),
@@ -15068,8 +15083,9 @@
       }
     }
 
-    var children = Component(props, secondArg); // Check if there was a render phase update
-
+    var children = Component(props, secondArg); 
+    
+    // Check if there was a render phase update
     if (didScheduleRenderPhaseUpdateDuringThisPass) {
       // Keep rendering in a loop for as long as render phase updates continue to
       // be scheduled. Use a counter to prevent infinite loops.
@@ -15105,10 +15121,17 @@
         ReactCurrentDispatcher$1.current = HooksDispatcherOnRerenderInDEV ;
         children = Component(props, secondArg);
       } while (didScheduleRenderPhaseUpdateDuringThisPass);
-    } // We can assume the previous dispatcher is always this one, since we set it
+    } 
+
+    // We can assume the previous dispatcher is always this one, since we set it
     // at the beginning of the render phase and there's no re-entrancy.
-
-
+    // ! 当执行完FunctionComponent后，ReactCurrentDispatcher$1.current 赋值为ContextOnlyDispatcher
+    /*
+     useEffect(() => {
+       useState(0);
+     })
+     会出错，调用了ContextOnlyDispatcher.useState
+    */
     ReactCurrentDispatcher$1.current = ContextOnlyDispatcher;
 
     {
@@ -15196,11 +15219,12 @@
       queue: null,
       next: null
     };
-
+    // ! 在进入renderWithHook时，已经给currentlyRenderingFiber$1 赋值为 workInProgress
     if (workInProgressHook === null) {
       // This is the first hook in the list
       currentlyRenderingFiber$1.memoizedState = workInProgressHook = hook;
     } else {
+      // ? 什么情况下会出现这种情况？ 在mount时连续调用多个hook，(抱歉，傻逼了🐷)
       // Append to the end of the list
       workInProgressHook = workInProgressHook.next = hook;
     }
@@ -15214,9 +15238,13 @@
     // clone, or a work-in-progress hook from a previous render pass that we can
     // use as a base. When we reach the end of the base list, we must switch to
     // the dispatcher used for mounts.
+    
+    // 执行FunctionComponent时，已经 处理 currentHook = null; workInProgressHook = null;
+    // start 处理双缓存
     var nextCurrentHook;
-
+    // 已经生成的 fiber 树上的 hook，第一次是空
     if (currentHook === null) {
+      // currentlyRenderingFiber$1 就是 work-in-progress fiber
       var current = currentlyRenderingFiber$1.alternate;
 
       if (current !== null) {
@@ -15227,22 +15255,27 @@
     } else {
       nextCurrentHook = currentHook.next;
     }
-
+    
     var nextWorkInProgressHook;
-
+    // 正在生成的 FiberNode 结点上的 hook，第一次为空
     if (workInProgressHook === null) {
       nextWorkInProgressHook = currentlyRenderingFiber$1.memoizedState;
     } else {
+      // 不是第一次，始终让它指向下一个 hook，
+      // 如果这是最后一个，那么 nextWorkInProgressHook 就会是 null
       nextWorkInProgressHook = workInProgressHook.next;
     }
-
+    // end 处理双缓存
     if (nextWorkInProgressHook !== null) {
+      // ? 尚不清楚如何走到这个分支
       // There's already a work-in-progress. Reuse it.
       workInProgressHook = nextWorkInProgressHook;
       nextWorkInProgressHook = workInProgressHook.next;
       currentHook = nextCurrentHook;
     } else {
+      // 将保存在current fiber 上的hook按照顺序克隆到work-in-progress fiber
       // Clone from the current hook.
+      // ? 在条件语句里面写hook的情况？
       if (!(nextCurrentHook !== null)) {
         {
           throw Error( 'Rendered more hooks than during the previous render.' );
@@ -15275,7 +15308,7 @@
       lastEffect: null
     };
   }
-
+  // 给useState的dipatcher使用
   function basicStateReducer(state, action) {
     // $FlowFixMe: Flow doesn't like mixed types
     return typeof action === 'function' ? action(state) : action;
@@ -15705,20 +15738,23 @@
   }
 
   function mountState(initialState) {
+    // 创建并返回当前的hook
     var hook = mountWorkInProgressHook();
-
+    
     if (typeof initialState === 'function') {
       // $FlowFixMe: Flow doesn't like mixed types
       initialState = initialState();
     }
-
+    // 赋值初始化state
     hook.memoizedState = hook.baseState = initialState;
+    // 创建queue
     var queue = hook.queue = {
       pending: null,
       dispatch: null,
       lastRenderedReducer: basicStateReducer,
       lastRenderedState: initialState
     };
+    // 创建dispatch
     var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
     return [hook.memoizedState, dispatch];
   }
@@ -16137,7 +16173,7 @@
     var id = rerenderState()[0];
     return id;
   }
-
+  // 创建update，将update加入queue.pending中，并开启调度。
   function dispatchAction(fiber, queue, action) {
     {
       if (typeof arguments[3] === 'function') {
@@ -16161,19 +16197,22 @@
       // This is the first update. Create a circular list.
       update.next = update;
     } else {
+      // update.next 指向链头
       update.next = pending.next;
+      // 将update添加到链尾
       pending.next = update;
     }
-
+    
     queue.pending = update;
     var alternate = fiber.alternate;
 
     if (fiber === currentlyRenderingFiber$1 || alternate !== null && alternate === currentlyRenderingFiber$1) {
-      // This is a render phase update. Stash it in a lazily-created map of
+      // This is a render phase update. Stash（贮藏） it in a lazily-created map of
       // queue -> linked list of updates. After this render pass, we'll restart
       // and apply the stashed updates on top of the work-in-progress hook.
       didScheduleRenderPhaseUpdateDuringThisPass = didScheduleRenderPhaseUpdate = true;
     } else {
+      // ? 仍旧不清楚eagerState的意义是什么？ 可以通过在useEffect中更新state，会走这一条路径
       if (fiber.lanes === NoLanes && (alternate === null || alternate.lanes === NoLanes)) {
         // The queue is currently empty, which means we can eagerly compute the
         // next state before entering the render phase. If the new state is the
@@ -16190,7 +16229,8 @@
 
           try {
             var currentState = queue.lastRenderedState;
-            var eagerState = lastRenderedReducer(currentState, action); // Stash the eagerly computed state, and the reducer used to compute
+            var eagerState = lastRenderedReducer(currentState, action); 
+            // Stash the eagerly computed state, and the reducer used to compute
             // it, on the update object. If the reducer hasn't changed by the
             // time we enter the render phase, then the eager state can be used
             // without calling the reducer again.
@@ -19120,13 +19160,12 @@
       }
     } else {
       didReceiveUpdate = false;
-    } // Before entering the begin phase, clear pending update priority.
+    } 
+    // Before entering the begin phase, clear pending update priority.
     // TODO: This assumes that we're about to evaluate the component and process
     // the update queue. However, there's an exception: SimpleMemoComponent
     // sometimes bails out later in the begin phase. This indicates that we should
     // move this assignment out of the common path and into each branch.
-
-
     workInProgress.lanes = NoLanes;
 
     switch (workInProgress.tag) {
@@ -19143,6 +19182,7 @@
 
       case FunctionComponent:
         {
+          // ! FiberNode.type 对于 FunctionComponent，指函数本身，对于ClassComponent，指class，对于HostComponent，指DOM节点tagName
           var _Component = workInProgress.type;
           var unresolvedProps = workInProgress.pendingProps;
           var resolvedProps = workInProgress.elementType === _Component ? unresolvedProps : resolveDefaultProps(_Component, unresolvedProps);
@@ -22022,11 +22062,12 @@
 
 
     mostRecentlyUpdatedRoot = root;
-  } // This is split into a separate function so we can mark a fiber with pending
+  } 
+  
+  // This is split into a separate function so we can mark a fiber with pending
   // work without treating it as a typical update that originates from an event;
   // e.g. retrying a Suspense boundary isn't an update, but it does schedule work
   // on a fiber.
-
   function markUpdateLaneFromFiberToRoot(sourceFiber, lane) {
     // Update the source fiber's lanes
     sourceFiber.lanes = mergeLanes(sourceFiber.lanes, lane);
@@ -22129,11 +22170,13 @@
     if (newCallbackPriority === SyncLanePriority) {
       // Special case: Sync React callbacks are scheduled on a special
       // internal queue
+      // 任务已经过期，需要同步执行render阶段
       newCallbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
     } else if (newCallbackPriority === SyncBatchedLanePriority) {
       // 同步批量执行：调用scheduleCallback将任务以立即执行的优先级去加入调度。
       newCallbackNode = scheduleCallback(ImmediatePriority$1, performSyncWorkOnRoot.bind(null, root));
     } else {
+      // 根据任务优先级异步执行render阶段。
       // concurrent模式的优先级：调用scheduleCallback将任务以获取到的新任务优先级(schedulerPriorityLevel)去加入调度。
       var schedulerPriorityLevel = lanePriorityToSchedulerPriority(newCallbackPriority);
       newCallbackNode = scheduleCallback(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root));
@@ -25456,8 +25499,9 @@
     var root = new FiberRootNode(containerInfo, tag, hydrate);
     // stateNode is any.
 
-
+    // 创建rootFiber（FiberNode）
     var uninitializedFiber = createHostRootFiber(tag);
+    // 关联初始的 rootFiber
     root.current = uninitializedFiber;
     uninitializedFiber.stateNode = root;
     initializeUpdateQueue(uninitializedFiber);
@@ -25613,10 +25657,12 @@
         error('Render methods should be a pure function of props and state; ' + 'triggering nested component updates from render is not allowed. ' + 'If necessary, trigger nested updates in componentDidUpdate.\n\n' + 'Check the render method of %s.', getComponentName(current.type) || 'Unknown');
       }
     }
-
-    var update = createUpdate(eventTime, lane); // Caution: React DevTools currently depends on this property
+    // 创建update
+    var update = createUpdate(eventTime, lane); 
+    // Caution: React DevTools currently depends on this property
     // being called "element".
-
+    // update.payload 为需要挂载在根节点的组件
+    // 对于HostRoot，payload为ReactDOM.render的第一个传参
     update.payload = {
       element: element
     };
@@ -25631,8 +25677,9 @@
 
       update.callback = callback;
     }
-
+    // 将生成的update加入updateQueue
     enqueueUpdate(current$1, update);
+    // 调度更新
     scheduleUpdateOnFiber(current$1, lane, eventTime);
     return lane;
   }
@@ -26033,6 +26080,7 @@
     var hydrationCallbacks = options != null && options.hydrationOptions || null;
     var mutableSources = options != null && options.hydrationOptions != null && options.hydrationOptions.mutableSources || null;
     var root = createContainer(container, tag, hydrate);
+    // container[internalContainerInstanceKey] = root.current;
     markContainerAsRoot(root.current, container);
     var containerNodeType = container.nodeType;
 
@@ -26158,7 +26206,9 @@
 
     if (!root) {
       // Initial mount
+      // 会移除container的子元素，使用该container的信息生成一个FiberRootNode 返回。
       root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
+      // root._internalRoot 就是 fiberRootNode
       fiberRoot = root._internalRoot;
 
       if (typeof callback === 'function') {
@@ -26168,9 +26218,9 @@
           var instance = getPublicRootInstance(fiberRoot);
           originalCallback.call(instance);
         };
-      } // Initial mount should not be batched.
+      } 
 
-
+      // Initial mount should not be batched.
       unbatchedUpdates(function () {
         updateContainer(children, fiberRoot, parentComponent, callback);
       });

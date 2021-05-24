@@ -28,6 +28,7 @@ function FiberNode(
   this.pendingProps = pendingProps;
   this.memoizedProps = null;
   this.updateQueue = null;
+  // 对于FunctionComponent，memoizedState存储hook的单项链表。
   this.memoizedState = null;
   this.dependencies = null;
 
@@ -69,6 +70,8 @@ export type Update<State> = {|
   next: Update<State> | null,
 |};
 
+
+// start HostComponent ClassComponent
 export type SharedQueue<State> = {|
   pending: Update<State> | null,
   interleaved: Update<State> | null,
@@ -83,5 +86,42 @@ export type UpdateQueue<State> = {|
   lastBaseUpdate: Update<State> | null,
   shared: SharedQueue<State>, // shared.pending,触发更新时，产生的Update会保存在shared.pending中，形成单向环状
   // 链表，当由Update计算state时这个环会被剪开并连接在lastBaseUpdate候面。
+  // Note: pending指向的时最后一个pending的state
   effects: Array<Update<State>> | null, // 保存update.callback !== null 的Update
 |};
+
+// end HostComponent ClassComponent
+
+// start FunctionComponent
+type Update<S, A> = {|
+  // TODO: Temporary field. Will remove this by storing a map of
+  // transition -> start time on the root.
+  eventTime: number,
+  lane: Lane,
+  suspenseConfig: null | SuspenseConfig,
+  action: A,
+  eagerReducer: ((S, A) => S) | null,
+  eagerState: S | null,
+  next: Update<S, A>,
+  priority?: ReactPriorityLevel,
+|};
+
+type UpdateQueue<S, A> = {|
+  pending: Update<S, A> | null,
+  // 保存dispatchAction.bind()的值
+  dispatch: (A => mixed) | null,
+  // 上一次render时使用的reducer
+  lastRenderedReducer: ((S, A) => S) | null,
+  // 上一次render时的state
+  lastRenderedState: S | null,
+|};
+export type Hook = {|
+  memoizedState: any,
+  baseState: any,
+  baseQueue: Update<any, any> | null,
+  // useState he useReducer 可以触发更新的，queue才有可能赋值，像useEffect、useRef为null
+  queue: UpdateQueue<any, any> | null,
+  next: Hook | null,
+|};
+
+// end FunctionComponent
