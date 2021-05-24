@@ -11385,7 +11385,7 @@
 
   var BlockingMode = 2;
   var ConcurrentMode = 4;
-  var ProfileMode = 8;
+  var ProfileMode = 8; //? 译为 “轮廓模式”, 暂不知晓什么意义
   var DebugTracingMode = 16;
 
   var ReactCurrentBatchConfig = ReactSharedInternals.ReactCurrentBatchConfig;
@@ -12285,6 +12285,7 @@
         } else {
           // This update does have sufficient priority.
           if (newLastBaseUpdate !== null) {
+            // 有跳过的情况，在该跳过的Update后的Update，都需要在下次重新执行
             var _clone = {
               eventTime: updateEventTime,
               // This update is going to be committed so we never want uncommit
@@ -15255,7 +15256,7 @@
     } else {
       nextCurrentHook = currentHook.next;
     }
-    
+
     var nextWorkInProgressHook;
     // 正在生成的 FiberNode 结点上的 hook，第一次为空
     if (workInProgressHook === null) {
@@ -15346,10 +15347,12 @@
     }
 
     queue.lastRenderedReducer = reducer;
-    var current = currentHook; // The last rebase update that is NOT part of the base state.
+    var current = currentHook; 
 
-    var baseQueue = current.baseQueue; // The last pending update that hasn't been processed yet.
+    // The last rebase update that is NOT part of the base state.
+    var baseQueue = current.baseQueue; 
 
+    // The last pending update that hasn't been processed yet.
     var pendingQueue = queue.pending;
 
     if (pendingQueue !== null) {
@@ -15370,7 +15373,7 @@
           error('Internal error: Expected work-in-progress queue to be a clone. ' + 'This is a bug in React.');
         }
       }
-
+      // pendingQueue 指向的是单项循环链表的最后一项
       current.baseQueue = baseQueue = pendingQueue;
       queue.pending = null;
     }
@@ -15391,6 +15394,7 @@
           // Priority is insufficient. Skip this update. If this is the first
           // skipped update, the previous update/state is the new base
           // update/state.
+          // 权限不足，跳过，并备份好前置依赖。
           var clone = {
             lane: updateLane,
             action: update.action,
@@ -15398,22 +15402,23 @@
             eagerState: update.eagerState,
             next: null
           };
-
+          // 第一个被跳过的作为链头
           if (newBaseQueueLast === null) {
             newBaseQueueFirst = newBaseQueueLast = clone;
             newBaseState = newState;
           } else {
             newBaseQueueLast = newBaseQueueLast.next = clone;
-          } // Update the remaining priority in the queue.
+          } 
+
+          // Update the remaining priority in the queue.
           // TODO: Don't need to accumulate this. Instead, we can remove
           // renderLanes from the original lanes.
-
-
           currentlyRenderingFiber$1.lanes = mergeLanes(currentlyRenderingFiber$1.lanes, updateLane);
           markSkippedUpdateLanes(updateLane);
         } else {
           // This update does have sufficient priority.
           if (newBaseQueueLast !== null) {
+            // 如果存在被跳过的hook，该hook后的hook都需要从新被执行。
             var _clone = {
               // This update is going to be committed so we never want uncommit
               // it. Using NoLane works because 0 is a subset of all bitmasks, so
@@ -15425,9 +15430,9 @@
               next: null
             };
             newBaseQueueLast = newBaseQueueLast.next = _clone;
-          } // Process this update.
+          } 
 
-
+          // Process this update.
           if (update.eagerReducer === reducer) {
             // If this update was processed eagerly, and its reducer matches the
             // current reducer, we can use the eagerly computed state.
@@ -15445,10 +15450,11 @@
         newBaseState = newState;
       } else {
         newBaseQueueLast.next = newBaseQueueFirst;
-      } // Mark that the fiber performed work, but only if the new state is
+      } 
+      
+      // Mark that the fiber performed work, but only if the new state is
       // different from the current state.
-
-
+      // 标记全局变量 didReceiveUpdate 为 true
       if (!objectIs(newState, hook.memoizedState)) {
         markWorkInProgressReceivedUpdate();
       }
@@ -22864,6 +22870,7 @@
 
   function workLoopSync() {
     // Already timed out, so perform work without checking if we need to yield.
+    // 深度遍历，对每一个fiber执行工作
     while (workInProgress !== null) {
       performUnitOfWork(workInProgress);
     }
@@ -22923,7 +22930,10 @@
       performUnitOfWork(workInProgress);
     }
   }
-
+  
+  /**
+   * @param {*} unitOfWork 就是 workInProgress fiber
+   */
   function performUnitOfWork(unitOfWork) {
     // The current, flushed, state of this fiber is the alternate. Ideally
     // nothing should rely on this, but relying on it here means that we don't
@@ -22931,7 +22941,7 @@
     var current = unitOfWork.alternate;
     setCurrentFiber(unitOfWork);
     var next;
-
+    // & 操作，可以认为是mode 中包含ProfileMode, 或者说等于ProfileMode
     if ( (unitOfWork.mode & ProfileMode) !== NoMode) {
       startProfilerTimer(unitOfWork);
       next = beginWork$1(current, unitOfWork, subtreeRenderLanes);

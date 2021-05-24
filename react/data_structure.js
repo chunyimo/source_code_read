@@ -32,11 +32,11 @@ function FiberNode(
   this.memoizedState = null;
   this.dependencies = null;
 
-  this.mode = mode;
+  this.mode = mode; // 模式，如更新的模式是否是异步的(ConcurrentMode)
 
   // Effects
   // 保存本次更新会造成的DOM操作
-  this.effectTag = NoEffect;
+  this.effectTag = NoEffect; // 二进制数字，用于标识某个动作
   this.subtreeTag = NoSubtreeEffect;
   this.deletions = null;
   this.nextEffect = null;

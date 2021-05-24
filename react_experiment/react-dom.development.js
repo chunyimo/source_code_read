@@ -12558,9 +12558,10 @@
     var pendingQueue = queue.shared.pending;
 
     if (pendingQueue !== null) {
-      queue.shared.pending = null; // The pending queue is circular. Disconnect the pointer between first
+      queue.shared.pending = null; 
+      // The pending queue is circular. Disconnect the pointer between first
       // and last so that it's non-circular.
-
+      // pendingQueue是单项链表，需要剪开
       var lastPendingUpdate = pendingQueue;
       var firstPendingUpdate = lastPendingUpdate.next;
       lastPendingUpdate.next = null; // Append pending updates to base queue
@@ -12571,7 +12572,8 @@
         lastBaseUpdate.next = firstPendingUpdate;
       }
 
-      lastBaseUpdate = lastPendingUpdate; // If there's a current queue, and it's different from the base queue, then
+      lastBaseUpdate = lastPendingUpdate; 
+      // If there's a current queue, and it's different from the base queue, then
       // we need to transfer the updates to that queue, too. Because the base
       // queue is a singly-linked list with no cycles, we can append to both
       // lists and take advantage of structural sharing.
@@ -12637,6 +12639,7 @@
         } else {
           // This update does have sufficient priority.
           if (newLastBaseUpdate !== null) {
+            // 有跳过的情况，在该跳过的Update后的Update，都需要在下次重新执行
             var _clone = {
               eventTime: updateEventTime,
               // This update is going to be committed so we never want uncommit
@@ -12649,9 +12652,9 @@
               next: null
             };
             newLastBaseUpdate = newLastBaseUpdate.next = _clone;
-          } // Process this update.
+          } 
 
-
+          // Process this update.
           newState = getStateFromUpdate(workInProgress, queue, update, newState, props, instance);
           var callback = update.callback;
 
@@ -12695,14 +12698,15 @@
 
       queue.baseState = newBaseState;
       queue.firstBaseUpdate = newFirstBaseUpdate;
-      queue.lastBaseUpdate = newLastBaseUpdate; // Set the remaining expiration time to be whatever is remaining in the queue.
+      queue.lastBaseUpdate = newLastBaseUpdate; 
+      
+      // Set the remaining expiration time to be whatever is remaining in the queue.
       // This should be fine because the only two other things that contribute to
       // expiration time are props and context. We're already in the middle of the
       // begin phase by the time we start processing the queue, so we've already
       // dealt with the props. Context in components that specify
       // shouldComponentUpdate is tricky; but we'll have to account for
       // that regardless.
-
       markSkippedUpdateLanes(newLanes);
       workInProgress.lanes = newLanes;
       workInProgress.memoizedState = newState;
