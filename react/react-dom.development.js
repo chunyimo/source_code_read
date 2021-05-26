@@ -8962,7 +8962,13 @@
       }
     }
   }
-
+  /**
+   * 将render 阶段completeWork中为fiber赋值的updateQueue对应的内容渲染在页面上
+   * @param {*} domElement 
+   * @param {*} updatePayload 
+   * @param {*} wasCustomComponentTag 
+   * @param {*} isCustomComponentTag 
+   */
   function updateDOMProperties(domElement, updatePayload, wasCustomComponentTag, isCustomComponentTag) {
     // TODO: Handle wasCustomComponentTag
     for (var i = 0; i < updatePayload.length; i += 2) {
@@ -10232,6 +10238,17 @@
     setInitialProperties(domElement, type, props, rootContainerInstance);
     return shouldAutoFocusHostComponent(type, props);
   }
+  /**
+   *
+   *
+   * @param {*} domElement  由 workInProgress.stateNode获取，fiber对应的DOM节点
+   * @param {*} type
+   * @param {*} oldProps
+   * @param {*} newProps
+   * @param {*} rootContainerInstance
+   * @param {*} hostContext
+   * @return {*} 
+   */
   function prepareUpdate(domElement, type, oldProps, newProps, rootContainerInstance, hostContext) {
     {
       var hostContextDev = hostContext;
@@ -17502,11 +17519,14 @@
 
     if (current !== null && !didReceiveUpdate) {
       bailoutHooks(current, workInProgress, renderLanes);
+      // 复用current
       return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
-    } // React DevTools reads this flag.
-
-
+    } 
+    
+    // React DevTools reads this flag.
     workInProgress.flags |= PerformedWork;
+    // 对于mount，reconcileChildren会创建新的子fiber节点
+    // 对于update，进行diff，产生新的fiber节点
     reconcileChildren(current, workInProgress, nextChildren, renderLanes);
     return workInProgress.child;
   }
@@ -18972,7 +18992,14 @@
       return newWorkInProgress;
     }
   }
-
+  /**
+   *
+   *
+   * @param {*} current workInProgress.alternate, 当前组件对应的fiber节点在上一次更新时的fiber节点。mount 时，current 为null。
+   * @param {*} workInProgress 当前组件对应的fiber节点
+   * @param {*} renderLanes
+   * @return {*} 
+   */
   function beginWork(current, workInProgress, renderLanes) {
     var updateLanes = workInProgress.lanes;
 
@@ -18982,21 +19009,23 @@
         return remountFiber(current, workInProgress, createFiberFromTypeAndProps(workInProgress.type, workInProgress.key, workInProgress.pendingProps, workInProgress._debugOwner || null, workInProgress.mode, workInProgress.lanes));
       }
     }
-
+    // update 模式
     if (current !== null) {
       var oldProps = current.memoizedProps;
       var newProps = workInProgress.pendingProps;
 
-      if (oldProps !== newProps || hasContextChanged() || ( // Force a re-render if the implementation changed due to hot reload:
+      if (oldProps !== newProps || hasContextChanged() || ( 
+        // Force a re-render if the implementation changed due to hot reload:
        workInProgress.type !== current.type )) {
         // If props or context changed, mark the fiber as having performed work.
         // This may be unset if the props are determined to be equal later (memo).
         didReceiveUpdate = true;
       } else if (!includesSomeLane(renderLanes, updateLanes)) {
-        didReceiveUpdate = false; // This fiber does not have any pending work. Bailout without entering
+        didReceiveUpdate = false; 
+
+        // This fiber does not have any pending work. Bailout without entering
         // the begin phase. There's still some bookkeeping we that needs to be done
         // in this optimized path, mostly pushing stuff onto the stack.
-
         switch (workInProgress.tag) {
           case HostRoot:
             pushHostRootContext(workInProgress);
@@ -19167,13 +19196,13 @@
     } else {
       didReceiveUpdate = false;
     } 
+
     // Before entering the begin phase, clear pending update priority.
     // TODO: This assumes that we're about to evaluate the component and process
     // the update queue. However, there's an exception: SimpleMemoComponent
     // sometimes bails out later in the begin phase. This indicates that we should
     // move this assignment out of the common path and into each branch.
     workInProgress.lanes = NoLanes;
-
     switch (workInProgress.tag) {
       case IndeterminateComponent:
         {
@@ -19395,7 +19424,7 @@
       // TODO: Experiencing an error where oldProps is null. Suggests a host
       // component is hitting the resume path. Figure out why. Possibly
       // related to `hidden`.
-
+      // 计算在DOM上的差异，updatePayload为数组形式，偶坐标为prop key，奇坐标为对应的值。
       var updatePayload = prepareUpdate(instance, type, oldProps, newProps, rootContainerInstance, currentHostContext); // TODO: Type this specific to this type of component.
 
       workInProgress.updateQueue = updatePayload;
@@ -19561,11 +19590,12 @@
           popHostContext(workInProgress);
           var rootContainerInstance = getRootHostContainer();
           var type = workInProgress.type;
-          //
+          // update 并且存在对应的DOM节点
           if (current !== null && workInProgress.stateNode != null) {
             updateHostComponent$1(current, workInProgress, type, newProps, rootContainerInstance);
 
             if (current.ref !== workInProgress.ref) {
+              // 对ref有改动的fiber添加 Ref effectTag
               markRef$1(workInProgress);
             }
           } else {
@@ -19597,6 +19627,7 @@
                 markUpdate(workInProgress);
               }
             } else {
+              // mount,没有DOM节点，为fiber 生成对应的DOM节点
               var instance = createInstance(type, newProps, rootContainerInstance, currentHostContext, workInProgress);
               appendAllChildren(instance, workInProgress, false, false);
               workInProgress.stateNode = instance;
@@ -19611,6 +19642,7 @@
 
             if (workInProgress.ref !== null) {
               // If there is a ref on a host node we need to schedule a callback
+              // 给fiber添加 Ref effectTag
               markRef$1(workInProgress);
             }
           }
@@ -20743,7 +20775,9 @@
             var tag = _effect.tag;
 
         if ((tag & Passive$1) !== NoFlags$1 && (tag & HasEffect) !== NoFlags$1) {
+          // 向`pendingPassiveHookEffectsUnmount`数组内`push`要销毁的effect
           enqueuePendingPassiveHookEffectUnmount(finishedWork, effect);
+          // 向`pendingPassiveHookEffectsMount`数组内`push`要执行回调的effect
           enqueuePendingPassiveHookEffectMount(finishedWork, effect);
         }
 
@@ -20763,10 +20797,15 @@
           // This is done to prevent sibling component effects from interfering with each other,
           // e.g. a destroy function in one component should never override a ref set
           // by a create function in another component during the same commit.
+          // 对于FunctionComponent 会调用useLayoutEffect hook的回调函数，调度useEffect的销毁与回调函数
           {
+            // 执行useLayoutEffect的回调函数
+            // Note: 在muation阶段 会执行useLayoutEffect hook的销毁函数，
+            // Note：在layout阶段同步执行useLayoutEffect的回调函数。
             commitHookEffectListMount(Layout | HasEffect, finishedWork);
           }
-
+          // 调度useEffect的销毁函数与回调函数， 
+          // Note： 这是schedule，在layout阶段完成后再异步执行。
           schedulePassiveEffects(finishedWork);
           return;
         }
@@ -21028,11 +21067,11 @@
         currentRef.current = null;
       }
     }
-  } // User-originating errors (lifecycles and refs) should not interrupt
+  } 
+  
+  // User-originating errors (lifecycles and refs) should not interrupt
   // deletion, so don't let them throw. Host-originating errors should
   // interrupt deletion, so it's okay
-
-
   function commitUnmount(finishedRoot, current, renderPriorityLevel) {
     onCommitUnmount(current);
 
@@ -21264,7 +21303,7 @@
 
   function commitPlacement(finishedWork) {
 
-
+    // 获取父节点
     var parentFiber = getHostParentFiber(finishedWork); // Note: these two variables *must* always be updated together.
 
     var parent;
@@ -21306,10 +21345,12 @@
 
       parentFiber.flags &= ~ContentReset;
     }
+    // 获取兄弟节点
+    var before = getHostSibling(finishedWork); 
 
-    var before = getHostSibling(finishedWork); // We only have the top Fiber that was inserted but we need to recurse down its
+    // We only have the top Fiber that was inserted but we need to recurse down its
     // children to find all the terminal nodes.
-
+    // parentStateNode 是否是rootFiber
     if (isContainer) {
       insertOrAppendPlacementNodeIntoContainer(finishedWork, before, parent);
     } else {
@@ -21370,7 +21411,15 @@
       }
     }
   }
-
+  /**
+   * commitNestedUnmounts：递归调用fiber节点及其子孙fiber
+   * 解绑ref
+   * commitUnmount：FunctionComponent 执行useEffect的销毁函数；ClassComponent执行componentWillUnmount
+   * @param {*} finishedRoot 
+   * @param {*} current 
+   * @param {*} renderPriorityLevel 
+   * @returns 
+   */
   function unmountHostComponents(finishedRoot, current, renderPriorityLevel) {
     // We only have the top Fiber that was deleted but we need to recurse down its
     // children to find all the terminal nodes.
@@ -21441,6 +21490,7 @@
           continue;
         }
       } else {
+        // FunctionComponent 执行useEffect的销毁函数；ClassComponent执行componentWillUnmount
         commitUnmount(finishedRoot, node); // Visit children because we may find more host components below.
 
         if (node.child !== null) {
@@ -21503,6 +21553,7 @@
           // e.g. a destroy function in one component should never override a ref set
           // by a create function in another component during the same commit.
           {
+            // 执行所有useLayoutEffect hook 的销毁函数
             commitHookEffectListUnmount(Layout | HasEffect, finishedWork);
           }
 
@@ -22985,8 +23036,8 @@
           next = completeWork(current, completedWork, subtreeRenderLanes);
         } else {
           startProfilerTimer(completedWork);
-          next = completeWork(current, completedWork, subtreeRenderLanes); // Update render duration assuming we didn't error.
-
+          next = completeWork(current, completedWork, subtreeRenderLanes); 
+          // Update render duration assuming we didn't error.
           stopProfilerTimerIfRunningAndRecordDelta(completedWork, false);
         }
 
@@ -23167,8 +23218,15 @@
     runWithPriority$1(ImmediatePriority$1, commitRootImpl.bind(null, root, renderPriorityLevel));
     return null;
   }
-
-  function commitRootImpl(root, renderPriorityLevel) {
+/**
+ * 该方法的关键之所在就是处理effectList， 即需要执行副作用的Fiber节点的单项链表，由root.firstEffect 为链头开始处理。
+ * 这些节点的updateQueue中保存了props的变化。
+ * 
+ * @param {*} root
+ * @param {*} renderPriorityLevel
+ * @return {*} 
+ */
+function commitRootImpl(root, renderPriorityLevel) {
     do {
       // `flushPassiveEffects` will call `flushSyncUpdateQueue` at the end, which
       // means `flushPassiveEffects` will sometimes result in additional
@@ -23217,10 +23275,10 @@
     var remainingLanes = mergeLanes(finishedWork.lanes, finishedWork.childLanes);
     // markRootFinished中会将remainingLanes赋值给remainingLanes
     markRootFinished(root, remainingLanes);
+    
     // Clear already finished discrete(离散的) updates in case that a later call of
     // `flushDiscreteUpdates` starts a useless render pass which may cancels
     // a scheduled timeout.
-
     if (rootsWithPendingDiscreteUpdates !== null) {
       if (!hasDiscreteLanes(remainingLanes) && rootsWithPendingDiscreteUpdates.has(root)) {
         rootsWithPendingDiscreteUpdates.delete(root);
@@ -23280,13 +23338,17 @@
       // 第一个阶段在mutation phase 之前。（可以称为before mutation phase）。
       // 在before mutation phase 阶段主要是做一些state的搜集工作。
       // before mutaion phase 阶段执行getSnapshotBeforeUpdate。
-
+      
+      // 处理focus状态
       focusedInstanceHandle = prepareForCommit(root.containerInfo);
       shouldFireAfterActiveInstanceBlur = false;
       nextEffect = firstEffect;
 
       do {
         {
+          /**
+           * 执行commitBeforeMutationLifeCycles（getSnapshotBeforeUpdate会调用） 和 flushPassiveEffects
+           */
           invokeGuardedCallback(null, commitBeforeMutationEffects, null);
 
           if (hasCaughtError()) {
@@ -23339,7 +23401,12 @@
       // the mutation phase, so that the previous tree is still current during
       // componentWillUnmount, but before the layout phase, so that the finished
       // work is current during componentDidMount/Update.
-
+      // Note:
+      /**
+       * fibe 树切换，发生于mutation之后，layout之前。
+       * muatation阶段，需要执行componentWillUnmount，在该生命周期中获取的DOM需要时更新前的
+       * layout阶段执行：componentDidMount 或 componentDidUpdate，需要更新后的DOM。
+       */
       root.current = finishedWork;
       // The next phase is the layout phase, where we call effects that read
       // the host tree after it's been mutated. The idiomatic(惯用的) use case for this is
@@ -23516,13 +23583,13 @@
       }
 
       var flags = nextEffect.flags;
-
+      // 调用getSnapshotBeforeUpdate
       if ((flags & Snapshot) !== NoFlags) {
         setCurrentFiber(nextEffect);
         commitBeforeMutationLifeCycles(current, nextEffect);
         resetCurrentFiber();
       }
-
+      // 调度useEffect
       if ((flags & Passive) !== NoFlags) {
         // If there are passive effects, schedule a callback to flush at
         // the earliest opportunity.
@@ -23544,7 +23611,7 @@
     while (nextEffect !== null) {
       setCurrentFiber(nextEffect);
       var flags = nextEffect.flags;
-
+      // 根据ContentReset effectTag重置文字节点
       if (flags & ContentReset) {
         commitResetTextContent(nextEffect);
       }
@@ -23553,17 +23620,20 @@
         var current = nextEffect.alternate;
 
         if (current !== null) {
+          // 移除之前的ref
           commitDetachRef(current);
         }
-      } // The following switch statement is only concerned about placement,
+      } 
+      
+      // The following switch statement is only concerned about placement,
       // updates, and deletions. To avoid needing to add a case for every possible
       // bitmap value, we remove the secondary effects from the effect tag and
       // switch on that value.
 
-
       var primaryFlags = flags & (Placement | Update | Deletion | Hydrating);
 
       switch (primaryFlags) {
+        // 插入DOM
         case Placement:
           {
             commitPlacement(nextEffect); // Clear the "placement" from effect tag so that we know that this is
@@ -23574,7 +23644,7 @@
             nextEffect.flags &= ~Placement;
             break;
           }
-
+        // 插入DOM并更新DOM
         case PlacementAndUpdate:
           {
             // Placement
@@ -23602,14 +23672,14 @@
             commitWork(_current2, nextEffect);
             break;
           }
-
+        // 更新DOM
         case Update:
           {
             var _current3 = nextEffect.alternate;
             commitWork(_current3, nextEffect);
             break;
           }
-
+        // 删除DOM
         case Deletion:
           {
             commitDeletion(root, nextEffect);
@@ -23631,10 +23701,12 @@
 
       if (flags & (Update | Callback)) {
         var current = nextEffect.alternate;
+        // 调用生命周期钩子和hook
         commitLifeCycles(root, current, nextEffect);
       }
 
       {
+        // 赋值ref
         if (flags & Ref) {
           commitAttachRef(nextEffect);
         }
@@ -23652,6 +23724,8 @@
       pendingPassiveEffectsRenderPriority = NoPriority$1;
 
       {
+        // 先执行unmount 组件中effect 的清除回调
+        // 然后执行mount组件effect 清除回调 的创建工作 invokePassiveEffectCreate
         return runWithPriority$1(priorityLevel, flushPassiveEffectsImpl);
       }
     }
@@ -23694,7 +23768,11 @@
     var create = effect.create;
     effect.destroy = create();
   }
-
+  /**
+   * 先执行unmount 组件中effect 的清除回调
+   * 然后执行mount组件effect 清除回调 的创建工作 invokePassiveEffectCreate
+   * @return {*} 
+   */
   function flushPassiveEffectsImpl() {
     if (rootWithPendingPassiveEffects === null) {
       return false;
@@ -23717,14 +23795,15 @@
 
     var prevExecutionContext = executionContext;
     executionContext |= CommitContext;
-    var prevInteractions = pushInteractions(root); // It's important that ALL pending passive effect destroy functions are called
+    var prevInteractions = pushInteractions(root); 
+
+    // It's important that ALL pending passive effect destroy functions are called
     // before ANY passive effect create functions are called.
     // Otherwise effects in sibling components might interfere with each other.
-    // e.g. a destroy function in one component may unintentionally override a ref
+    // e.g. a destroy function in one component may unintentionally(无意的)override a ref
     // value set by a create function in another component.
     // Layout effects have the same constraint.
     // First pass: Destroy stale passive effects.
-
     var unmountEffects = pendingPassiveHookEffectsUnmount;
     pendingPassiveHookEffectsUnmount = [];
 
@@ -23796,11 +23875,11 @@
 
         resetCurrentFiber();
       }
-    } // Note: This currently assumes there are no passive effects on the root fiber
+    } 
+    
+    // Note: This currently assumes there are no passive effects on the root fiber
     // because the root is not part of its own effect list.
     // This could change in the future.
-
-
     var effect = root.current.firstEffect;
 
     while (effect !== null) {
@@ -23825,9 +23904,10 @@
     }
 
     executionContext = prevExecutionContext;
-    flushSyncCallbackQueue(); // If additional passive effects were scheduled, increment a counter. If this
-    // exceeds the limit, we'll fire a warning.
+    flushSyncCallbackQueue(); 
 
+    // If additional passive effects were scheduled, increment a counter. If this
+    // exceeds the limit, we'll fire a warning.
     nestedPassiveUpdateCount = rootWithPendingPassiveEffects === null ? 0 : nestedPassiveUpdateCount + 1;
     return true;
   }

@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="skudITjsIzsgV_h1lpD9" name="Page-1">
-        <mxGraphModel dx="1472" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1063" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1390" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -59,7 +59,7 @@
                     <mxGeometry x="660" y="490" width="150" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="这一轮遍历，需要将老的节点拍平到一个map里面，然后用新child的key或index，去后去map中的值进行比对，看类型是否一致，这主要是处理移动的情况。" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
-                    <mxGeometry x="660" y="850" width="150" height="100" as="geometry"/>
+                    <mxGeometry x="660" y="810" width="240" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="经过第一轮遍历，新的children数组老的fiber都没有遍历完&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;br&gt;，进行的第二轮遍历&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="430" y="960" width="240" height="66.25" as="geometry"/>
@@ -104,7 +104,7 @@
                 <mxCell id="37" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="498" y="810" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="第一轮遍历，只要key不同，马上跳出，准备进入第二轮" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+                <mxCell id="40" value="第一轮遍历，只要key不同，马上跳出，准备进入第二轮" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
                     <mxGeometry x="210" y="520" width="158" height="120" as="geometry"/>
                 </mxCell>
             </root>

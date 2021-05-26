@@ -27,6 +27,8 @@ function FiberNode(
   // 保存本次更新造成的状态改变相关信息
   this.pendingProps = pendingProps;
   this.memoizedProps = null;
+  // 对于存在DOM节点的fiber，保存的是一个updatePayload，
+  // updatePayload为数组形式，偶坐标为prop key，奇坐标为对应的值。
   this.updateQueue = null;
   // 对于FunctionComponent，memoizedState存储hook的单项链表。
   this.memoizedState = null;
