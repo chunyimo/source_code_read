@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="y4k61WV3-oRp5_8Y9yrR" name="Page-1">
-        <mxGraphModel dx="1922" dy="1203" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="10000" background="#808080" math="0" shadow="0">
+        <mxGraphModel dx="3080" dy="1805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="7000" background="#808080" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -273,9 +273,6 @@
                         <mxPoint x="1845" y="2040" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="97" value="计算newState，保存在 workInProgress fiber 的&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;memoizedState&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="910" y="3702.5" width="352.5" height="55" as="geometry"/>
-                </mxCell>
                 <mxCell id="98" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=1;fontSize=16;" parent="1" source="97" target="47" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="1260" y="3770" as="sourcePoint"/>
@@ -325,7 +322,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="110" value="深度“递”，处理完孩子后，进入“归”阶段" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="2400" y="3120" width="220" height="70" as="geometry"/>
+                    <mxGeometry x="2400" y="3120" width="350" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="111" value="&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;performUnitOfWork&lt;/code&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;方法会创建下一个&lt;/span&gt;&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;Fiber节点&lt;/code&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;并赋值给&lt;/span&gt;&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;workInProgress&lt;/code&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;，并将&lt;/span&gt;&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;workInProgress&lt;/code&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;与已创建的&lt;/span&gt;&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;Fiber节点&lt;/code&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;连接起来构成&lt;/span&gt;&lt;code style=&quot;color: rgb(71, 101, 130); padding: 0.25rem 0.5rem; margin: 0px; font-size: 16px; background-color: rgba(27, 31, 35, 0.05); border-radius: 3px;&quot;&gt;Fiber树&lt;/code&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="1040" y="2960" width="390" height="120" as="geometry"/>
@@ -402,7 +399,7 @@
                         <mxPoint x="2030" y="3710" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="135" value="" style="shape=sumEllipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;backgroundOutline=1;dashed=1;fillColor=none;strokeColor=#FF0A2B;fontStyle=1;fontSize=16;" parent="1" vertex="1">
+                <mxCell id="135" value="" style="shape=sumEllipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=none;strokeColor=#FF0A2B;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="1880" y="3750" width="15" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="136" value="" style="endArrow=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="131" target="135" edge="1">
@@ -510,7 +507,7 @@
                 <mxCell id="163" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;commitBeforeMutationEffects&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="1670" y="4630" width="760" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="250" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="164" target="249">
+                <mxCell id="250" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=16;" parent="1" source="164" target="249" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="164" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;div style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; line-height: 22px; font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;commitMutationEffects&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=3;fontStyle=1;fontSize=16;" parent="1" vertex="1">
@@ -539,8 +536,8 @@
                         <mxPoint x="1590" y="4211.85205078125" as="sourcePoint"/>
                         <mxPoint x="1770" y="2790" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="950" y="4305"/>
-                            <mxPoint x="950" y="3230"/>
+                            <mxPoint x="850" y="4305"/>
+                            <mxPoint x="850" y="3230"/>
                             <mxPoint x="1540" y="3230"/>
                             <mxPoint x="1540" y="2860"/>
                             <mxPoint x="1978" y="2860"/>
@@ -803,26 +800,29 @@
                         <mxPoint x="2770" y="6380" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="249" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;commitDetachRef&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+                <mxCell id="249" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;commitDetachRef&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="960" y="4965" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="252" value="" style="endArrow=none;html=1;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=6;" edge="1" parent="1" source="181" target="249">
+                <mxCell id="252" value="" style="endArrow=none;html=1;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=6;" parent="1" source="181" target="249" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="780" y="5050" as="sourcePoint"/>
                         <mxPoint x="830" y="5000" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="253" value="移除之前的ref" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#C73500;strokeWidth=3;fillColor=#fa6800;align=center;fontColor=#ffffff;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+                <mxCell id="253" value="移除之前的ref" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#C73500;strokeWidth=3;fillColor=#fa6800;align=center;fontColor=#ffffff;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="985" y="4850" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="254" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="249" target="253">
+                <mxCell id="254" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="249" target="253" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="990" y="5280" as="sourcePoint"/>
                         <mxPoint x="1040" y="5230" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="255" value="renderWithHooks 会执行FunctionComponent函数，在该函数内部根据mount/update，执行对应的dispatcher函数。" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;align=left;" vertex="1" parent="1">
+                <mxCell id="255" value="renderWithHooks 会执行FunctionComponent函数，在该函数内部根据mount/update，执行对应的dispatcher函数。" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;align=left;" parent="1" vertex="1">
                     <mxGeometry x="2240" y="3920" width="400" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" value="计算newState，保存在 workInProgress fiber 的&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;memoizedState&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="3702.5" width="352.5" height="55" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
