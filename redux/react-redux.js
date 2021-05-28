@@ -1,3 +1,13 @@
+// ! 源码注解见 https://github.com/chunyimo/react-redux
+
+
+
+
+
+
+
+
+
 /* eslint-disable no-empty */
 /* eslint-disable valid-jsdoc */
 ;(function (global, factory) {

@@ -70,3 +70,59 @@ function applyMiddleware() {
   }
   
 }
+
+function combineReducers(reducersObjMap) {
+  // 获取所有的reducer，过滤掉非函数的的值
+  let validReducers = {};
+  for (let key of Object.keys(reducersObjMap)) {
+    if (typeof reducersObjMap[key] !== 'function') {
+      console.warn('invalid reducer');
+    }
+    validReducers[key] = reducersObjMap[key];
+  }
+
+  // 返回rootReducer
+  return function rootReducer(state, action) {
+    if (state === void 0) {
+      state = {}
+    }
+
+    let nextState = {};
+    let hasChanged = false;
+
+    for (let key of Object.keys(validReducers)) {
+      let preStateForKey = state[key];
+      let nextStateForKey = validReducers[key](preStateForKey, action);
+
+      nextState[key] = nextStateForKey;
+      hasChanged = hasChanged || nextStateForKey !== preStateForKey;
+    }
+
+    return hasChanged ? nextState : state;
+  }
+}
+
+// proxy 代理
+function wrapMapToPropsFunc(mapToProps) {
+  return function initProxySelect(dispatch) {
+    const proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
+      return proxy.dependsOnOwnProps? proxy.mapToProps(stateOrDispatch,ownProps): proxy.mapToProps(stateOrDispatch);
+    }
+    // 首次调用，执行自己定义的
+    proxy.mapToProps = function detectFactoryAndVerigy(stateOrDispatch, ownProps) {
+      // 非首次调用，执行传入的
+      proxy.mapToProps = mapToProps
+      // 计算出props
+      let props = proxy(stateOrDispatch, ownProps);
+      // 处理props
+      if (typeof props === 'function') {
+        proxy.mapToProps = props;
+        props = proxy(stateOrDispatch, ownProps);
+      }
+
+      return props;
+    }
+    return proxy;
+    
+  }
+}
