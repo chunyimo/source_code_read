@@ -1306,6 +1306,21 @@
     return path;
   }
 
+  /**
+   * 
+   * @param {*} path 
+   * @param {*} state 
+   * @param {*} key 
+   * @param {*} currentLocation 
+   * @returns 
+   * interfacr Loaction {
+      pathname: string;
+      search：string;
+      hash: stringj;
+      state: object | null;
+      key: string;
+    }
+   */
   function createLocation(path, state, key, currentLocation) {
     var location;
 
@@ -1364,7 +1379,20 @@
   function locationsAreEqual(a, b) {
     return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && valueEqual(a.state, b.state);
   }
-
+ 
+  /**
+   * 维护数据结构 {
+   *  prompt：function
+   *  listener： function[]
+   * }
+   * @returns 
+   * {
+      setPrompt: setPrompt,
+      confirmTransitionTo: confirmTransitionTo,
+      appendListener: appendListener,
+      notifyListeners: notifyListeners
+    };
+   */
   function createTransitionManager() {
     var prompt = null;
 
