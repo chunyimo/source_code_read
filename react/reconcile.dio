@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="skudITjsIzsgV_h1lpD9" name="Page-1">
-        <mxGraphModel dx="1063" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1390" math="0" shadow="0">
+        <mxGraphModel dx="1232" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,7 +8,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="&lt;div style=&quot;color: rgb(212 , 212 , 212) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 16px ; line-height: 22px&quot;&gt;&lt;span style=&quot;color: #dcdcaa&quot;&gt;reconcileChildFibers&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="40" width="210" height="50" as="geometry"/>
+                    <mxGeometry x="532.5" y="50" width="210" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -16,75 +16,75 @@
                 <mxCell id="8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="单个节点" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="425" y="155" width="80" height="80" as="geometry"/>
+                <mxCell id="3" value="newChild 是否是单个节点" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="585" y="165" width="105" height="85" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="5" target="11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="&lt;div style=&quot;color: rgb(212 , 212 , 212) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 16px ; line-height: 22px&quot;&gt;&lt;span style=&quot;color: #dcdcaa&quot;&gt;reconcileSingleElement&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="115" y="162.5" width="245" height="65" as="geometry"/>
+                    <mxGeometry x="240" y="175" width="245" height="65" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="&#10;&#10;&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-weight: normal; font-size: 16px; line-height: 22px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #dcdcaa&quot;&gt;reconcileChildrenArray&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#10;&#10;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="565" y="167.5" width="235" height="55" as="geometry"/>
+                    <mxGeometry x="780" y="180" width="235" height="55" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="385" y="165" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="545" y="175" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="否" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="510" y="165" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="670" y="175" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="&lt;div style=&quot;color: rgb(212 , 212 , 212) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 16px ; line-height: 22px&quot;&gt;&lt;span style=&quot;color: #dcdcaa&quot;&gt;placeSingleChild&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="161.25" y="312.5" width="152.5" height="67.5" as="geometry"/>
+                    <mxGeometry x="286.25" y="322.5" width="152.5" height="67.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="先遍历老的child链表，寻找一个key和type相同的，找不到就把老的child标记为移除，新建一个fiber节点" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;" parent="1" vertex="1">
-                    <mxGeometry x="90" y="60" width="250" height="95" as="geometry"/>
+                    <mxGeometry x="250" y="70" width="250" height="95" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="对于单个节点，要么是复用，要么新建的fiber，标记为插入" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="320" width="110" height="90" as="geometry"/>
+                <mxCell id="14" value="对于单个节点，要么是复用，要么新建的fiber，标记为插入" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="290" width="200" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="15" target="16" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="&#10;&#10;&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-weight: normal; font-size: 16px; line-height: 22px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #dcdcaa&quot;&gt;reconcileChildrenArray&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#10;&#10;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="400" width="235" height="55" as="geometry"/>
+                    <mxGeometry x="560" y="410" width="235" height="55" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="16" target="23" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" value="第一轮遍历，同时遍历新的children（数组）以及老的fiber节点（链表）" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="397.5" y="532.5" width="240" height="67.5" as="geometry"/>
+                    <mxGeometry x="557.5" y="542.5" width="240" height="67.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="第一轮遍历主要是找属性更新的点（把属性更新放第一位，是属性更新更常发生）" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
-                    <mxGeometry x="660" y="490" width="150" height="110" as="geometry"/>
+                    <mxGeometry x="820" y="500" width="150" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="这一轮遍历，需要将老的节点拍平到一个map里面，然后用新child的key或index，去后去map中的值进行比对，看类型是否一致，这主要是处理移动的情况。" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
-                    <mxGeometry x="660" y="810" width="240" height="140" as="geometry"/>
+                <mxCell id="21" value="这一轮遍历，需要将老的节点拍平到一个map里面，然后用新child的key或index，去和map中的值进行比对，看类型是否一致，这主要是处理移动的情况。" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="820" width="240" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="经过第一轮遍历，新的children数组老的fiber都没有遍历完&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;br&gt;，进行的第二轮遍历&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="430" y="960" width="240" height="66.25" as="geometry"/>
+                <mxCell id="22" value="经过第一轮遍历，新的children数组和老的fiber都没有遍历完&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;br&gt;，进行的第二轮遍历&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26%2310%3B%26%2310%3B%26lt%3Bdiv%20style%3D%26quot%3Bcolor%3A%20rgb(212%2C%20212%2C%20212)%3B%20background-color%3A%20rgb(30%2C%2030%2C%2030)%3B%20font-family%3A%20consolas%2C%20%26amp%3Bquot%3Bcourier%20new%26amp%3Bquot%3B%2C%20monospace%3B%20font-weight%3A%20normal%3B%20font-size%3A%2016px%3B%20line-height%3A%2022px%3B%26quot%3B%26gt%3B%26lt%3Bdiv%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bcolor%3A%20%23dcdcaa%26quot%3B%26gt%3BreconcileChildrenArray%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26%2310%3B%26%2310%3B%22%20style%3D%22whiteSpace%3Dwrap%3Bhtml%3D1%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22565%22%20y%3D%22167.5%22%20width%3D%22235%22%20height%3D%2255%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=0;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="590" y="970" width="240" height="66.25" as="geometry"/>
                 </mxCell>
                 <mxCell id="28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="23" target="27" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.302;entryY=-0.042;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="23" target="22" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="518" y="970" as="targetPoint"/>
+                        <mxPoint x="678" y="980" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="23" value="新children遍历完" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="477.5" y="673.75" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="637.5" y="683.75" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="标记老child链余下的需要删除" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="297.5" y="683.75" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="457.5" y="693.75" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="430" y="684" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="590" y="694" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="580" y="600" as="sourcePoint"/>
-                        <mxPoint x="580" y="800" as="targetPoint"/>
+                        <mxPoint x="740" y="610" as="sourcePoint"/>
+                        <mxPoint x="740" y="810" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="34" target="35" edge="1">
@@ -92,20 +92,20 @@
                 </mxCell>
                 <mxCell id="39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.651;entryY=-0.033;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="34" target="22" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="580" y="970" as="targetPoint"/>
+                        <mxPoint x="740" y="980" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="34" value="老的child链遍历完" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="540" y="800" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="700" y="810" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="新建新的节点，标记为插入" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="810" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="520" y="820" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="37" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="498" y="810" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="658" y="820" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="40" value="第一轮遍历，只要key不同，马上跳出，准备进入第二轮" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
-                    <mxGeometry x="210" y="520" width="158" height="120" as="geometry"/>
+                    <mxGeometry x="370" y="530" width="158" height="120" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

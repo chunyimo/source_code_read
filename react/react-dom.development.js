@@ -12188,7 +12188,7 @@
 
   function processUpdateQueue(workInProgress, props, instance, renderLanes) {
     // This is always non-null on a ClassComponent or HostRoot
-    // updateQueue 是单项链表
+    // updateQueue 是单向链表
     var queue = workInProgress.updateQueue;
     hasForceUpdate = false;
 
@@ -12229,7 +12229,7 @@
       // current fiber的alternate是workInProgress fiber，workInProgress fiber的alternate是current fiber
       var current = workInProgress.alternate;
       // ! update queue 双缓存，防止低优先级被高优先级中断而丢失
-      // ! 本次被跳过的低优先级Update及之后的Update会称为下次的baseUpdae，存储在current Fiber
+      // ! 本次被跳过的低优先级Update及之后的Update会成为下次的baseUpdae，存储在current Fiber
       // ! 下次进入时，直接从current fiber 拷贝出新的queue
       if (current !== null) {
         // This is always non-null on a ClassComponent or HostRoot
@@ -12266,7 +12266,7 @@
         var updateLane = update.lane;
         var updateEventTime = update.eventTime;
         // isSubsetOfLanes函数的意义是，判断当前更新的优先级（updateLane）
-        // 是否在渲染优先级（renderLanes）中如果不在，那么就说明优先级不足
+        // 是否包含在渲染优先级（renderLanes）中，中如果不在，那么就说明优先级不足
         if (!isSubsetOfLanes(renderLanes, updateLane)) {
           // Priority is insufficient. Skip this update. If this is the first
           // skipped update, the previous update/state is the new base
@@ -12315,9 +12315,9 @@
               next: null
             };
             newLastBaseUpdate = newLastBaseUpdate.next = _clone;
-          } // Process this update.
-
-
+          } 
+          
+          // Process this update.
           newState = getStateFromUpdate(workInProgress, queue, update, newState, props, instance);
           var callback = update.callback;
           // 将update的callback存到updateQueue的effects中。
