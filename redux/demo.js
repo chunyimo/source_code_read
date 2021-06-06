@@ -43,7 +43,13 @@ function c(arg) {
 
 const cfun = compose(a, b, c);
 
-
+/**
+ *
+ * 返回形式：(createStore) => (presate, action) => {
+ *   return store
+ * }
+ * @return {*} 
+ */
 function applyMiddleware() {
   let middlewares = [...arguments];
   return function(createStore){
@@ -60,6 +66,7 @@ function applyMiddleware() {
         return mid(storeApi);
       })
       // middleware 从 (next) => (action) => void 变为 (action) => {}
+      // next: (action) => {}
       // 最后调用的是store.dispatch
       _dispatch = compose.apply(void 0, chain)(store.dispatch);
       return {
