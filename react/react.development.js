@@ -1298,6 +1298,7 @@
   function lazyInitializer(payload) {
     if (payload._status === Uninitialized) {
       let ctor = payload._result;
+      // thenable 是一个promise
       let thenable = ctor(); // Transition to the next state.
 
       let pending = payload;
@@ -1332,6 +1333,7 @@
     if (payload._status === Resolved) {
       return payload._result;
     } else {
+      // 抛出promise给suspense使用componentDidCatch捕获到并进行处理。
       throw payload._result;
     }
   }
@@ -1345,6 +1347,7 @@
     let lazyType = {
       $$typeof: REACT_LAZY_TYPE,
       _payload: payload,
+      // 第一次渲染首先会执行_init方法
       _init: lazyInitializer
     };
 
