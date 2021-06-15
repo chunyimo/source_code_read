@@ -109,6 +109,7 @@ type Update<S, A> = {|
 |};
 
 type UpdateQueue<S, A> = {|
+  // pending始终指向最后一个
   pending: Update<S, A> | null,
   // 保存dispatchAction.bind()的值
   dispatch: (A => mixed) | null,
@@ -121,7 +122,7 @@ export type Hook = {|
   memoizedState: any,
   baseState: any,
   baseQueue: Update<any, any> | null,
-  // useState he useReducer 可以触发更新的，queue才有可能赋值，像useEffect、useRef为null
+  // useState 和 useReducer 可以触发更新的，queue才有可能赋值，像useEffect、useRef为null
   queue: UpdateQueue<any, any> | null,
   next: Hook | null,
 |};

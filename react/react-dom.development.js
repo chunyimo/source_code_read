@@ -15124,9 +15124,10 @@
           // Even when hot reloading, allow dependencies to stabilize
           // after first render to prevent infinite render phase updates.
           ignorePreviousDependencies = false;
-        } // Start over from the beginning of the list
-
-
+        } 
+        
+        // Start over from the beginning of the list
+        // 进入Component函数执行前，做一些清理的工作。
         currentHook = null;
         workInProgressHook = null;
         workInProgress.updateQueue = null;
@@ -15276,6 +15277,7 @@
 
     var nextWorkInProgressHook;
     // 正在生成的 FiberNode 结点上的 hook，第一次为空
+    // ? mount后的第二次update走的路线
     if (workInProgressHook === null) {
       nextWorkInProgressHook = currentlyRenderingFiber$1.memoizedState;
     } else {
@@ -15308,7 +15310,7 @@
         queue: currentHook.queue,
         next: null
       };
-
+      // ? mount后的第一次update走的路线
       if (workInProgressHook === null) {
         // This is the first hook in the list.
         currentlyRenderingFiber$1.memoizedState = workInProgressHook = newHook;
@@ -16220,6 +16222,13 @@
       // This is the first update. Create a circular list.
       update.next = update;
     } else {
+      /**
+       pending: B
+       B-->A-->B;
+       add C
+       C-->A-->B-->C
+       pending: C
+       */
       // update.next 指向链头
       update.next = pending.next;
       // 将update添加到链尾
@@ -17217,6 +17226,7 @@
   }
 
   function updateMemoComponent(current, workInProgress, Component, nextProps, updateLanes, renderLanes) {
+    // mount
     if (current === null) {
       var type = Component.type;
 
@@ -17276,8 +17286,9 @@
     if (!includesSomeLane(updateLanes, renderLanes)) {
       // This will be the props with resolved defaultProps,
       // unlike current.memoizedProps which will be the unresolved ones.
-      var prevProps = currentChild.memoizedProps; // Default to shallow comparison
-
+      var prevProps = currentChild.memoizedProps; 
+      
+      // Default to shallow comparison
       var compare = Component.compare;
       compare = compare !== null ? compare : shallowEqual;
 
@@ -19295,7 +19306,7 @@
           _resolvedProps3 = resolveDefaultProps(_type2.type, _resolvedProps3);
           return updateMemoComponent(current, workInProgress, _type2, _resolvedProps3, updateLanes, renderLanes);
         }
-
+      // 对应的是React.memo()，即函数组件的情况。
       case SimpleMemoComponent:
         {
           return updateSimpleMemoComponent(current, workInProgress, workInProgress.type, workInProgress.pendingProps, updateLanes, renderLanes);
