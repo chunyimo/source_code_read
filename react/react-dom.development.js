@@ -5895,15 +5895,18 @@
 
     switch (eventPriority) {
       case DiscreteEvent:
+        // 处理离散事件
         listenerWrapper = dispatchDiscreteEvent;
         break;
 
       case UserBlockingEvent:
+        // 处理用户阻塞事件
         listenerWrapper = dispatchUserBlockingUpdate;
         break;
 
       case ContinuousEvent:
       default:
+        // 处理连续事件
         listenerWrapper = dispatchEvent;
         break;
     }
@@ -8262,9 +8265,10 @@
 
 
   var mediaEventTypes = ['abort', 'canplay', 'canplaythrough', 'durationchange', 'emptied', 'encrypted', 'ended', 'error', 'loadeddata', 'loadedmetadata', 'loadstart', 'pause', 'play', 'playing', 'progress', 'ratechange', 'seeked', 'seeking', 'stalled', 'suspend', 'timeupdate', 'volumechange', 'waiting']; // We should not delegate these events to the container, but rather
+  
   // set them on the actual target element itself. This is primarily
   // because these events do not consistently bubble in the DOM.
-
+  // 不会冒泡的事件
   var nonDelegatedEvents = new Set(['cancel', 'close', 'invalid', 'load', 'scroll', 'toggle'].concat(mediaEventTypes));
 
   function executeDispatch(event, listener, currentTarget) {
@@ -8353,27 +8357,31 @@
       rootContainerElement[listeningMarker] = true;
       allNativeEvents.forEach(function (domEventName) {
         if (!nonDelegatedEvents.has(domEventName)) {
+          // 冒泡事件，在冒泡阶段执行
           listenToNativeEvent(domEventName, false, rootContainerElement, null);
         }
-
+        // ? 这个分支有些令人疑惑，前脚isCapturePhaseListener为false，现在又为true，在执行一遍，用意何在？
+        // linkto key8381 有相关逻辑
         listenToNativeEvent(domEventName, true, rootContainerElement, null);
       });
     }
   }
   function listenToNativeEvent(domEventName, isCapturePhaseListener, rootContainerElement, targetElement) {
     var eventSystemFlags = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-    var target = rootContainerElement; // selectionchange needs to be attached to the document
+    var target = rootContainerElement; 
+    // selectionchange needs to be attached to the document
     // otherwise it won't capture incoming events that are only
     // triggered on the document directly.
 
     if (domEventName === 'selectionchange' && rootContainerElement.nodeType !== DOCUMENT_NODE) {
       target = rootContainerElement.ownerDocument;
-    } // If the event can be delegated (or is capture phase), we can
+    } 
+
+    // If the event can be delegated (or is capture phase), we can
     // register it to the root container. Otherwise, we should
     // register the event to the target element and mark it as
     // a non-delegated event.
-
-
+    // linkto key8381
     if (targetElement !== null && !isCapturePhaseListener && nonDelegatedEvents.has(domEventName)) {
       // For all non-delegated events, apart from scroll, we attach
       // their event listeners to the respective elements that their
@@ -8393,7 +8401,8 @@
     }
 
     var listenerSet = getEventListenerSet(target);
-    var listenerSetKey = getListenerSetKey(domEventName, isCapturePhaseListener); // If the listener entry is empty or we should upgrade, then
+    var listenerSetKey = getListenerSetKey(domEventName, isCapturePhaseListener); 
+    // If the listener entry is empty or we should upgrade, then
     // we need to trap an event listener onto the target.
 
     if (!listenerSet.has(listenerSetKey)) {
@@ -8405,11 +8414,20 @@
       listenerSet.add(listenerSetKey);
     }
   }
-
+  /**
+   *
+   *
+   * @param {*} targetContainer  对于委托事件而言就是rootContainerElement，对于非委托事件，则是目标target.
+   * @param {*} domEventName
+   * @param {*} eventSystemFlags
+   * @param {*} isCapturePhaseListener
+   * @param {*} isDeferredListenerForLegacyFBSupport
+   */
   function addTrappedEventListener(targetContainer, domEventName, eventSystemFlags, isCapturePhaseListener, isDeferredListenerForLegacyFBSupport) {
-    var listener = createEventListenerWrapperWithPriority(targetContainer, domEventName, eventSystemFlags); // If passive option is not supported, then the event will be
+    // 给事件绑定优先级。
+    var listener = createEventListenerWrapperWithPriority(targetContainer, domEventName, eventSystemFlags); 
+    // If passive option is not supported, then the event will be
     // active and not passive.
-
     var isPassiveListener = undefined;
 
     if (passiveBrowserEventsSupported) {
