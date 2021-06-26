@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="y4k61WV3-oRp5_8Y9yrR" name="Page-1">
-        <mxGraphModel dx="1063" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="7000" background="#808080" math="0" shadow="0">
+        <mxGraphModel dx="1868" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="7000" background="#808080" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -241,16 +241,16 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="85" value="is mount" style="rhombus;whiteSpace=wrap;html=1;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="2375" y="3830" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="2375" y="3880" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="87" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;HooksDispatcherOnMount&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="2090" y="3840" width="225" height="60" as="geometry"/>
+                    <mxGeometry x="2090" y="3890" width="225" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="2335" y="3840" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="90" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;HooksDispatcherOnUpdate&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="2515" y="3840" width="235" height="60" as="geometry"/>
+                    <mxGeometry x="2515" y="3890" width="235" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="92" value="否" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="2460" y="3840" width="40" height="20" as="geometry"/>
@@ -280,9 +280,9 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="99" value="在&lt;span style=&quot;color: rgb(220, 220, 170); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;updateReducer&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;计算出newState，保存在&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; color: rgb(156, 220, 254);&quot;&gt;hook&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; color: rgb(156, 220, 254);&quot;&gt;memoizedState&lt;/span&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;返回&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="2590" y="3730" width="259" height="70" as="geometry"/>
+                    <mxGeometry x="2700" y="4030" width="259" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="100" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontStyle=1;fontSize=16;" parent="1" source="90" target="99" edge="1">
+                <mxCell id="100" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=1;fontSize=16;" parent="1" source="90" target="99" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="2770" y="3940" as="sourcePoint"/>
                         <mxPoint x="2820" y="3890" as="targetPoint"/>
@@ -313,7 +313,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="108" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;completeUnitOfWork&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;align=center;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3010" y="3140" width="239" height="60" as="geometry"/>
+                    <mxGeometry x="4140" y="3140" width="239" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="109" value="" style="endArrow=none;html=1;fontSize=16;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontStyle=1" parent="1" source="2" target="108" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -334,18 +334,18 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="113" value="1. 会先处理completeWork，处理完成后，会先判断其是否有兄弟节点，若有，设置全局变量currentWork，并直接返回，若没有，进入“归”阶段。&lt;br style=&quot;font-size: 16px;&quot;&gt;2. 会向上，对每个节点尝试执行“第”和“归”，直到归到“根&quot;节点, 整个render阶段结束。" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="3330" y="3050" width="330" height="180" as="geometry"/>
+                    <mxGeometry x="4460" y="3050" width="330" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="138" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1;fontSize=16;" parent="1" source="114" target="137" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="114" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;completeWork&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3069.5" y="3280" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="4199.5" y="3280" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="116" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="108" target="113" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="3260" y="3310" as="sourcePoint"/>
-                        <mxPoint x="3310" y="3260" as="targetPoint"/>
+                        <mxPoint x="4390" y="3310" as="sourcePoint"/>
+                        <mxPoint x="4440" y="3260" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="117" value="根据条件(props或者context是否由变化)设置全局变量&lt;span style=&quot;color: rgb(156 , 220 , 254) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 16px&quot;&gt;didReceiveUpdate&lt;/span&gt;&lt;span style=&quot;font-size: 16px&quot;&gt;，然后根据type进入不同的函数&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fa6800;fontColor=#ffffff;dashed=1;strokeColor=#C73500;align=left;fontStyle=1;fontSize=16;" parent="1" vertex="1">
@@ -415,7 +415,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="137" value="workInProgress.Tag" style="rhombus;whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3029" y="3410" width="200" height="110" as="geometry"/>
+                    <mxGeometry x="4159" y="3410" width="200" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="143" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=1;fontSize=16;" parent="1" source="139" target="142" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -424,60 +424,60 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="139" value="&amp;nbsp;mount/update" style="rhombus;whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3089.25" y="3615" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="4219.25" y="3615" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="141" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;HostComponent&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="3109" y="3560" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="4239" y="3560" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="142" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;updateHostComponent$1&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="2780" y="3920" width="210" height="60" as="geometry"/>
+                    <mxGeometry x="3910" y="3920" width="210" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="144" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;createInstance&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3280" y="3920" width="150" height="60" as="geometry"/>
+                    <mxGeometry x="4410" y="3920" width="150" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="146" value="update时，已经存在DOM节点，只需要更新DOM节点的属性，该方法计算DOM上的差异，并将差异保存在&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; color: rgb(156, 220, 254);&quot;&gt;workInProgress&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; color: rgb(156, 220, 254);&quot;&gt;updateQueue&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#fa6800;fontColor=#ffffff;strokeColor=#C73500;align=left;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="2900" y="3725" width="310" height="95" as="geometry"/>
+                    <mxGeometry x="4030" y="3725" width="310" height="95" as="geometry"/>
                 </mxCell>
                 <mxCell id="147" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="142" target="146" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="2940" y="3900" as="sourcePoint"/>
-                        <mxPoint x="2990" y="3850" as="targetPoint"/>
+                        <mxPoint x="4070" y="3900" as="sourcePoint"/>
+                        <mxPoint x="4120" y="3850" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="148" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;div style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; line-height: 22px; font-size: 16px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;appendAllChildren&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3237.5" y="4060" width="235" height="60" as="geometry"/>
+                    <mxGeometry x="4367.5" y="4060" width="235" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="150" value="" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="148" target="144" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="3320" y="4050" as="sourcePoint"/>
-                        <mxPoint x="3370" y="4000" as="targetPoint"/>
+                        <mxPoint x="4450" y="4050" as="sourcePoint"/>
+                        <mxPoint x="4500" y="4000" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="151" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;finalizeInitialChildren&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3237.5" y="4190" width="235" height="60" as="geometry"/>
+                    <mxGeometry x="4367.5" y="4190" width="235" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="152" value="" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="151" target="148" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="3365" y="4070" as="sourcePoint"/>
-                        <mxPoint x="3365" y="3990" as="targetPoint"/>
+                        <mxPoint x="4495" y="4070" as="sourcePoint"/>
+                        <mxPoint x="4495" y="3990" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="153" value="创建实例" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#C73500;fillColor=#fa6800;fontColor=#ffffff;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="3080" y="3920" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="4210" y="3920" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="154" value="递归创建所有孩子" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;strokeColor=#C73500;fillColor=#fa6800;fontColor=#ffffff;fontStyle=1;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="3079.5" y="4060" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="4209.5" y="4060" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="155" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="153" target="144" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="3210" y="4040" as="sourcePoint"/>
-                        <mxPoint x="3260" y="3990" as="targetPoint"/>
+                        <mxPoint x="4340" y="4040" as="sourcePoint"/>
+                        <mxPoint x="4390" y="3990" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="156" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="154" target="148" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="3170" y="4200" as="sourcePoint"/>
-                        <mxPoint x="3220" y="4150" as="targetPoint"/>
+                        <mxPoint x="4300" y="4200" as="sourcePoint"/>
+                        <mxPoint x="4350" y="4150" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="162" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontStyle=1;fontSize=16;" parent="1" source="157" target="161" edge="1">
@@ -822,7 +822,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="255" value="renderWithHooks 会执行FunctionComponent函数，在该函数内部根据mount/update，执行对应的dispatcher函数。" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;align=left;" parent="1" vertex="1">
-                    <mxGeometry x="2240" y="3920" width="400" height="130" as="geometry"/>
+                    <mxGeometry x="2240" y="3970" width="400" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="97" value="计算newState，保存在 workInProgress fiber 的&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;memoizedState&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16;shadow=1;" parent="1" vertex="1">
                     <mxGeometry x="910" y="3702.5" width="352.5" height="55" as="geometry"/>
@@ -863,13 +863,34 @@
                         <mxPoint x="1120" y="2600" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="265" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;dispatchAction = dispatchAction&lt;/span&gt;.&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;bind&lt;/span&gt;(&lt;span style=&quot;color: rgb(86, 156, 214); font-size: 16px;&quot;&gt;null&lt;/span&gt;,&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;currentlyRenderingFiber$1&lt;/span&gt;,&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;queue&lt;/span&gt;)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;fontSize=16;align=left;" vertex="1" parent="1">
+                <mxCell id="265" value="&lt;div style=&quot;color: rgb(212, 212, 212); background-color: rgb(30, 30, 30); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; line-height: 22px;&quot;&gt;&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;dispatchAction = dispatchAction&lt;/span&gt;.&lt;span style=&quot;color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;bind&lt;/span&gt;(&lt;span style=&quot;color: rgb(86, 156, 214); font-size: 16px;&quot;&gt;null&lt;/span&gt;,&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;currentlyRenderingFiber$1&lt;/span&gt;,&amp;nbsp;&lt;span style=&quot;color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;queue&lt;/span&gt;)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#ffffff;fontSize=16;align=left;" parent="1" vertex="1">
                     <mxGeometry x="2410" y="1950" width="710" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="266" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="62" target="265">
+                <mxCell id="266" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="62" target="265" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="2340" y="2020" as="sourcePoint"/>
                         <mxPoint x="2390" y="1970" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="270" value="&lt;span style=&quot;color: rgb(220, 220, 170); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px; background-color: rgb(30, 30, 30);&quot;&gt;renderWithHooks执行后获取newChildren&lt;/span&gt;, 进入到协调阶段" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#000000;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2030" y="3600" width="280" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="271" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="54" target="270" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="2450" y="3680" as="sourcePoint"/>
+                        <mxPoint x="2500" y="3630" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="272" value="单向的环状列表" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#000000;fontSize=16;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="2158" y="2130" width="172" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="273" value="&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;nextChildren&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;&amp;nbsp;=&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;instance&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;render&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;();&lt;/span&gt;, 用nextChildren进入reconcile" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fa6800;strokeColor=#C73500;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="1600" y="3450" width="330" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="274" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="49" target="273">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1560" y="3570" as="sourcePoint"/>
+                        <mxPoint x="1610" y="3520" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
