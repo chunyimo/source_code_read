@@ -20902,11 +20902,11 @@
                   error('Expected %s state to match memoized state before ' + 'processing the update queue. ' + 'This might either be because of a bug in React, or because ' + 'a component reassigns its own `this.state`. ' + 'Please file an issue.', getComponentName(finishedWork.type) || 'instance');
                 }
               }
-            } // We could update instance props and state here,
+            } 
+            
+            // We could update instance props and state here,
             // but instead we rely on them being set during last render.
             // TODO: revisit this when we implement resuming.
-
-
             commitUpdateQueue(finishedWork, updateQueue, instance);
           }
 
@@ -21970,7 +21970,9 @@
       return SyncLane;
     } else if ((mode & ConcurrentMode) === NoMode) {
       return getCurrentPriorityLevel() === ImmediatePriority$1 ? SyncLane : SyncBatchedLane;
-    } // The algorithm for assigning an update to a lane should be stable for all
+    } 
+    
+    // The algorithm for assigning an update to a lane should be stable for all
     // updates at the same priority within the same event. To do this, the inputs
     // to the algorithm must be the same. For example, we use the `renderLanes`
     // to avoid choosing a lane that is already in the middle of rendering.
@@ -21984,8 +21986,7 @@
     // Our heuristic for that is whenever we enter a concurrent work loop.
     //
     // We'll do the same for `currentEventPendingLanes` below.
-
-
+    
     if (currentEventWipLanes === NoLanes) {
       currentEventWipLanes = workInProgressRootIncludedLanes;
     }
@@ -22098,7 +22099,8 @@
       (executionContext & LegacyUnbatchedContext) !== NoContext && // Check if we're not already rendering
       (executionContext & (RenderContext | CommitContext)) === NoContext) {
         // Register pending interactions on the root to avoid losing traced interaction data.
-        schedulePendingInteractions(root, lane); // This is a legacy edge case. The initial mount of a ReactDOM.render-ed
+        schedulePendingInteractions(root, lane); 
+        // This is a legacy edge case. The initial mount of a ReactDOM.render-ed
         // root inside of batchedUpdates should be synchronous, but layout updates
         // should be deferred until the end of the batch.
         // 如果是本次更新是同步的，并且当前还未渲染，意味着主线程空闲，并没有React的
@@ -22244,9 +22246,11 @@
         // ! 任务可以复用，但是如何将新任务的信息提交给这个复用的任务。
         return;
       }
-
+      // ? 为什么不等，就一定是最高优先级
       // The priority changed. Cancel the existing callback. We'll schedule a new one below.
       // 到这个地方，必然是优先级更高的情况
+      // 终止正在执行的的低优先级任务。
+      // 准备执行一个新进来的高优先级任务。
       cancelCallback(existingCallbackNode);
     }
 
