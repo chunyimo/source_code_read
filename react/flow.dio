@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="y4k61WV3-oRp5_8Y9yrR" name="Page-1">
-        <mxGraphModel dx="1868" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="7000" background="#808080" math="0" shadow="0">
+        <mxGraphModel dx="1868" dy="1458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5000" pageHeight="7000" background="#808080" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -883,15 +883,6 @@
                 </mxCell>
                 <mxCell id="272" value="单向的环状列表" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontColor=#000000;fontSize=16;fontStyle=1" vertex="1" parent="1">
                     <mxGeometry x="2158" y="2130" width="172" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="273" value="&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;nextChildren&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;&amp;nbsp;=&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(156, 220, 254); font-size: 16px;&quot;&gt;instance&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; color: rgb(220, 220, 170); font-size: 16px;&quot;&gt;render&lt;/span&gt;&lt;span style=&quot;background-color: rgb(30, 30, 30); color: rgb(212, 212, 212); font-family: consolas, &amp;quot;courier new&amp;quot;, monospace; font-size: 16px;&quot;&gt;();&lt;/span&gt;, 用nextChildren进入reconcile" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fa6800;strokeColor=#C73500;fontColor=#000000;fontStyle=1" vertex="1" parent="1">
-                    <mxGeometry x="1600" y="3450" width="330" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="274" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;fontSize=16;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="49" target="273">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="1560" y="3570" as="sourcePoint"/>
-                        <mxPoint x="1610" y="3520" as="targetPoint"/>
-                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
