@@ -15397,6 +15397,7 @@
       // We'll add them to the base queue.
       if (baseQueue !== null) {
         // Merge the pending queue and the base queue.
+        // Note baseQueue 和 pendingQueue 都指环状链表的末端，这里老是容易忘记，转不过弯来。
         var baseFirst = baseQueue.next;
         var pendingFirst = pendingQueue.next;
         baseQueue.next = pendingFirst;
